@@ -1,0 +1,47 @@
+.iphone-color-selector.active::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 1px solid blue;
+    border-radius: 50%;
+    transform: scale(1.3);
+}
+
+.gray{
+    background: #161617;
+}
+
+.text-bit-white{
+    color: #86868b;
+}
+
+.fade-on{
+
+    animation: fadeOn 0.5s ease-in forwards;
+}
+
+.fade-off{
+    opacity: 0;
+    animation: fadeOff 1s ease 0.5s forwards;
+}
+
+@keyframes fadeOn{
+    0%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOff{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
