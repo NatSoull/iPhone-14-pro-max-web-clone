@@ -1,27 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./cards.css"
-import card1Img from "../img/card-1.jpg"
-import card2Img from "../img/card-2.jpg"
-import card3Img from "../img/card-3.jpg"
-import card5Img from "../img/card-5.jpg"
-import card6Img from "../img/card-6.jpg"
-import card7Img from "../img/card-7.jpg"
-import card8Img from "../img/card-8.jpg"
-import card9Img from "../img/card-9.jpg"
-import card10Img from "../img/card-10.jpg"
-import card11Img from "../img/card-11.jpg"
-import card13Img from "../img/card-13.jpg"
+import card1GoldImg from "../img/card-1-gold.jpg"
+import cardGold2Img from "../img/card-2-gold.jpg"
+import cardGold3Img from "../img/card-3-gold.jpg"
+import cardGold5Img from "../img/card-5.jpg"
+import cardGold6Img from "../img/card-6.jpg"
+import cardGold7Img from "../img/card-7-gold.jpg"
+import cardGold8Img from "../img/card-8-gold.jpg"
+import cardGold9Img from "../img/card-9.jpg"
+import cardGold10Img from "../img/card-10.jpg"
+import cardGold11Img from "../img/card-11-gold.jpg"
+import cardGold13Img from "../img/card-13-gold.jpg"
+import { useSelector } from 'react-redux'
+
+import card1DeepPurpleImg from "../img/card-1-deepPurple.jpg"
 
 const Cards = () => {
 
   const [trackingScroll, setTrackingScroll] = useState(0)
+
+  
 
   addEventListener("scroll" , e => {
     const scrolled = scrollY
     setTrackingScroll(scrolled)
   })
 
-  console.log(trackingScroll)
+  // console.log(trackingScroll)
+
+  const colorActive = useSelector(state => state.colorActive.value)
+
+  const [card1AllContents, setCard1AllContents] = useState(``)
+
+
+
+  const card1AllContentsFunction = () => {
+    if(colorActive === "deepPurple"){
+      return (
+        `<div className= ${trackingScroll >= 700 ? "card-1-animation" : null}"card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden">
+          <h1 className="purple-text text-transparent text-4xl font-bold text-center"">Meet <br /> Dynamic Island</h1>
+            <div>
+              <img className=" mx-auto h-[450px]" src={card1DeepPurpleImg}/>
+            </div>
+        </div>`
+      )
+    }else if(colorActive === "gold"){
+      return (
+        `<div className= ${trackingScroll >= 700 ? "card-1-animation" : null}"card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden">
+          <h1 className="gold-text text-transparent text-4xl font-bold text-center"">Meet <br /> Dynamic Island</h1>
+            <div>
+              <img className=" mx-auto h-[450px]" src={card1GoldImg}/>
+            </div>
+        </div>`
+      )
+    }
+  }
+
+  useEffect(() => {
+    setCard1AllContents(card1AllContentsFunction())
+  } , [])
+  
 
 
   return (
@@ -43,12 +81,7 @@ const Cards = () => {
 
           <div className="grid-card-group mb-20">
 
-            <div className={`card-1 ${trackingScroll >= 700 ? "card-1-animation" : null} bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden`}>
-                <h1 className=" text-transparent text-4xl font-bold text-center">Meet <br /> Dynamic Island</h1>
-                <div className="">
-                  <img className=" mx-auto h-[450px]" src={card1Img}/>
-                </div>
-            </div>
+          {card1AllContents}
 
             <div className={`card-2 ${trackingScroll >= 500 ? "card-2-animation" : null} bg-black rounded-[25px] flex items-end justify-center relative overflow-hidden`}>
               <img className=" absolute bottom-0 left-0" src={card2Img}/>
@@ -61,7 +94,7 @@ const Cards = () => {
             </div>
 
             <div className={`card-3 ${trackingScroll >= 800 ? "card-3-animation" : null} bg-black rounded-[25px] pt-10 ps-10 overflow-hidden`}>
-                <h3 className=" text-4xl font-semibold text-transparent">
+                <h3 className=" gold-text text-4xl font-semibold text-transparent">
                   The <br/>
                   Mastermind <br/>
                   behind it all.
@@ -69,8 +102,8 @@ const Cards = () => {
                 <img className=" mt-8" src={card3Img}/>
             </div>
 
-            <div className={`card-4 ${trackingScroll >= 1300 ? "card-4-animation" : null} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
-              <h3 className=" text-2xl font-bold text-transparent tracking-wide">A battery that's</h3>
+            <div className={`card-4 ${trackingScroll >= 1300 ? "card-4-gold-animation" : null} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
+              <h3 className=" gold-text text-2xl font-bold text-transparent tracking-wide">A battery that's</h3>
               <div className="">
                 <h1 content="all&nbsp;in," className=" text-6xl font-extrabold text-slate-900 mb-1 h-[70px] relative">all&nbsp;in,</h1>
                 <h1 content="&nbsp;&nbsp;all&nbsp;day." className=" text-6xl font-extrabold text-slate-900 h-[70px] relative">&nbsp;&nbsp;all&nbsp;day.</h1>
@@ -94,7 +127,7 @@ const Cards = () => {
             </div>
 
             <div className={`card-7 ${trackingScroll >= 1600 ? "card-7-animation" : null} rounded-[25px] bg-black flex flex-col justify-between item-center overflow-hidden`}>
-              <h3 className=" mt-12 text-center text-4xl font-bold text-transparent">
+              <h3 className="gold-text mt-12 text-center text-4xl font-bold text-transparent">
                 Always-On display. <br />
                 A subtle way to stay <br />
                 in the know.
@@ -107,7 +140,7 @@ const Cards = () => {
             <div className={` card-8 ${trackingScroll >= 2300 ? "card-8-animation" : null} rounded-[25px] bg-black pt-10 flex flex-col justify-between items-center overflow-hidden`}>
               <div className=" flex flex-col items-center gap-2">
                 <h5 className=" text-white text-2xl font-semibold">Ceramic Shield</h5>
-                <h3 className=" text-transparent text-5xl font-semibold">
+                <h3 className="gold-text text-transparent text-5xl font-semibold">
                   Tougher than any <br />
                   smartphone glass.
                 </h3>
@@ -116,7 +149,7 @@ const Cards = () => {
             </div>
 
             <div className=" card-9 rounded-[25px] bg-black py-16 flex flex-col justify-between">
-              <div>
+              <div className="gold-text">
                 <h3 className=" text-transparent text-5xl font-bold text-center mb-3">Water</h3>
                 <h3 className=" text-transparent text-5xl font-bold text-center">resistance</h3>
               </div>
@@ -138,21 +171,21 @@ const Cards = () => {
 
             <div className=" card-12 rounded-[25px] bg-black flex justify-center items-center relative">
               <div>
-                <h3 className=" text-transparent text-5xl font-bold text-center">Crash Detaction</h3>      
+                <h3 className="gold-text text-transparent text-5xl font-bold text-center">Crash Detaction</h3>      
               </div>
             </div>
 
             <div className={` card-13 ${trackingScroll >= 3200 ? "card-13-animation" : null} rounded-[25px] bg-black flex overflow-hidden gap-10`}>
               <div className=" w-[52%] flex flex-col items-end justify-end">
                 <div className=" flex flex-col items-center gap-1">
-                  <h1 className=" text-transparent text-5xl font-bold">6.7”</h1>
+                  <h1 className=" gold-text text-transparent text-5xl font-bold">6.7”</h1>
                   <h3 className=" text-2xl font-bold">iPhone 14 Pro Max7</h3>
                   <img className=" h-[190px] mt-5" src={card13Img}/>
                 </div>
               </div>
               <div className=" w-[48%] flex flex-col items-start justify-end">
                 <div className=" flex flex-col items-center gap-1">
-                  <h1 className=" text-transparent text-5xl font-bold">6.1”</h1>
+                  <h1 className=" gold-text text-transparent text-5xl font-bold">6.1”</h1>
                   <h3 className=" text-2xl font-bold">iPhone 14 Pro7</h3>
                   <img className=" -mb-8 mt-5" src={card13Img}/>
                 </div>

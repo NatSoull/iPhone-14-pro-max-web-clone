@@ -59,14 +59,22 @@
 
 
 
+.gold-text {
+  background-image: linear-gradient( 180deg , rgb(255, 223, 137) , rgb(237, 142, 0));
+  background-clip: text;
+}
+
+.purple-text {
+  background-image: linear-gradient(180deg , rgb(233, 169, 255) , rgb(143, 0, 143));
+  background-clip: text;
+}
+
+
+
+
 
 .card-1 {
   grid-area: card-1;
-}
-
-.card-1 h1 {
-  background-image: linear-gradient( 180deg , rgb(255, 223, 137) , rgb(237, 142, 0));
-  background-clip: text;
 }
 
 .card-1 img {
@@ -106,8 +114,6 @@
 }
 
 .card-3 h3 {
-  background-image: linear-gradient( 180deg , rgb(255, 223, 137) , rgb(237, 142, 0));
-  background-clip: text;
   opacity: 0;
 }
 
@@ -130,10 +136,6 @@
   grid-area: card-4;
 }
 
-.card-4 h3 {
-  background-image: linear-gradient( 180deg , rgb(255, 255, 255) , rgb(237, 142, 0));
-  background-clip: text;
-}
 
 /* .card-4 h1 {
   background-image: linear-gradient( 180deg , rgb(255, 243, 217) , rgb(255, 176, 57));
@@ -152,7 +154,21 @@
   animation: card-4-animation-content 3s ease forwards;
 } */
 
-.card-4-animation h1::before {
+.card-4-gold-animation h1::before {
+  content: attr(content);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-image: linear-gradient( 180deg , rgb(255, 223, 137) , rgb(237, 142, 0));
+  background-clip: text;
+  color: transparent;
+  overflow: hidden;
+  animation: card-4-animation-content 3s ease forwards;
+}
+
+.card-4-dee-purple-animation h1::before {
   content: attr(content);
   position: absolute;
   top: 0;
@@ -193,11 +209,6 @@
   grid-area: card-7;
 }
 
-.card-7 h3 {
-  background-image: linear-gradient( 180deg , rgb(255, 223, 137) , rgb(237, 142, 0));
-  background-clip: text;
-}
-
 .card-7 img {
   transform: translateY(100px);
   opacity: 0;
@@ -212,11 +223,6 @@
 
 .card-8 {
   grid-area: card-8;
-}
-
-.card-8 h3 {
-  background-image: linear-gradient( 180deg , rgb(255, 223, 137) , rgb(237, 142, 0));
-  background-clip: text;
 }
 
 .card-8 img {
@@ -235,11 +241,6 @@
   grid-area: card-9;
   background-image: url("../img/card-9.jpg");
   background-repeat: no-repeat;
-}
-
-.card-9 div {
-  background-image: linear-gradient( 180deg , rgb(255, 239, 160) , rgb(251, 163, 23));
-  background-clip: text;
 }
 
 
@@ -293,20 +294,11 @@
   border-radius: 50%;
 }
 
-.card-12 h3 {
-  background-image: linear-gradient( 180deg , rgb(255, 239, 160) , rgb(239, 148, 0));
-  background-clip: text;
-}
 
 
 
 .card-13 {
   grid-area: card-13;
-}
-
-.card-13 h1 {
-  background-image: linear-gradient( 180deg , rgb(255, 239, 160) , rgb(239, 148, 0));
-  background-clip: text;
 }
 
 .card-13 img {
