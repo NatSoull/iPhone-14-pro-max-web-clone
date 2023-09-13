@@ -7,6 +7,7 @@ import iPhone14ProMaxDeepPurple from "../img/iPhone-14-pro-max(deep-purple).jpg"
 import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { changeColorActive } from "../feature/services/colorActiveSlice"
+import { trackingScroll } from "../feature/services/scrollingSlice";
 
 const Hero = () => {
   const [iPhone14ProMaxDeepPurpleClass, SetIPhone14ProMaxDeepPurpleClass] =
@@ -18,17 +19,29 @@ const Hero = () => {
   const [iPhone14ProMaxBlackClass, SetIPhone14ProMaxBlackClass] =
     useState("fade-on -z-10");
 
+
   const colorActive = useSelector(state => state.colorActive.value)
-  // console.log(colorActive)
+  const scrolling = useSelector(state => state.scrolling.value)
   const dispatch = useDispatch()
+  // console.log(colorActive)
+  // console.log(scrolling)
 
-  const [changeColorText, setChangeColorText] = useState("Deep Purple");
 
+  addEventListener("scroll" , () => {
+    const scrolled = scrollY
+    dispatch(trackingScroll(scrolled))
+  })
+
+
+  
+  
   // useEffect(() => {
-  //   SetIPhone14ProMaxGoldClass("hidden");
-  //   SetIPhone14ProMaxSilverClass("hidden");
-  //   SetIPhone14ProMaxBlackClass("hidden");
-  // }, []);
+    //   SetIPhone14ProMaxGoldClass("hidden");
+    //   SetIPhone14ProMaxSilverClass("hidden");
+    //   SetIPhone14ProMaxBlackClass("hidden");
+    // }, []);
+    
+    const [changeColorText, setChangeColorText] = useState("Deep Purple");
 
   const clickedDeepPurple = () => {
     SetIPhone14ProMaxDeepPurpleClass("fade-off");
@@ -39,6 +52,7 @@ const Hero = () => {
     setChangeColorText("Deep Purple");
   };
 
+
   const clickedGold = () => {
     SetIPhone14ProMaxDeepPurpleClass("fade-on");
     SetIPhone14ProMaxGoldClass("fade-off");
@@ -47,6 +61,7 @@ const Hero = () => {
     dispatch(changeColorActive("gold"))
     setChangeColorText("Gold");
   };
+
 
   const clickedSilver = () => {
     SetIPhone14ProMaxDeepPurpleClass("fade-on");
@@ -57,6 +72,7 @@ const Hero = () => {
     setChangeColorText("Silver");
   };
 
+
   const clickedBlack = () => {
     SetIPhone14ProMaxDeepPurpleClass("fade-on");
     SetIPhone14ProMaxGoldClass("fade-on");
@@ -65,6 +81,7 @@ const Hero = () => {
     dispatch(changeColorActive("black"))
     setChangeColorText("Black");
   };
+
 
   // const [fadeOff, setFadeOff] = useState("deepPurple")
 
@@ -82,7 +99,7 @@ const Hero = () => {
 
       <div className=" max-w-[1000px] mx-auto flex justify-between items-center mt-10 mb-24">
         <h1 className=" text-5xl md:text-7xl font-bold">Pro. Beyond.</h1>
-        <div className=" flex gap-2 items-center top-0 right-0">
+        <div className={` sticky flex gap-2 items-center top-0 z-50`}>
           <div className=" text-lg font-semibold mr-5">{changeColorText}</div>
           <div
             onClick={() => clickedDeepPurple()}
@@ -122,7 +139,7 @@ const Hero = () => {
         />
       </div>
 
-      
+
     </div>
   );
 };
