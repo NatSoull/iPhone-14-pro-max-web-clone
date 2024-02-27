@@ -51,25 +51,67 @@ const Cards = () => {
   const colorActive = useSelector(state => state.colorActive.value)
 
 
-  const [cardAllContents, setCardAllContents] = useState()
+  const [cardAllContents , setCardAllContents] = useState()
+
+
+  const [activateCard1Animation, setActivateCard1Animation] = useState(false)
+  const [activateCard2Animation, setActivateCard2Animation] = useState(false)
+  const [activateCard3Animation, setActivateCard3Animation] = useState(false)
+  const [activateCard4DeepPurpleAnimation, setActivateCard4DeepPurpleAnimation] = useState(false)
+  const [activateCard4GoldAnimation, setActivateCard4GoldAnimation] = useState(false)
+  const [activateCard4SilverAnimation, setActivateCard4SilverAnimation] = useState(false)
+  const [activateCard4BlackAnimation, setActivateCard4BlackAnimation] = useState(false)
+  const [activateCard7Animation, setActivateCard7Animation] = useState(false)
+  const [activateCard8Animation, setActivateCard8Animation] = useState(false)
+  const [activateCard13Animation, setActivateCard13Animation] = useState(false)
+
+
+  window.addEventListener("scroll" , () => {
+    if(window.scrollY >= 700){
+      setActivateCard1Animation("card-1-animation")
+    }
+    if(window.scrollY >= 500){
+      setActivateCard2Animation("card-2-animation")
+    }
+    if(window.scrollY >= 800){
+      setActivateCard3Animation("card-3-animation")
+      console.log("activated")
+    }
+    if(window.scrollY >= 1300){
+      setActivateCard4DeepPurpleAnimation("card-4-deep-purple-animation")
+      setActivateCard4GoldAnimation("card-4-gold-animation")
+      setActivateCard4SilverAnimation("card-4-silver-animation")
+      setActivateCard4BlackAnimation("card-4-black-animation")
+    }
+    if(window.scrollY >= 1600){
+      setActivateCard7Animation("card-7-animation")
+    }
+    if(window.scrollY >= 2300){
+      setActivateCard8Animation("card-8-animation")
+    }
+    if(window.scrollY >= 3200){
+      setActivateCard13Animation("card-13-animation")
+    }
+  })
 
 
   useEffect(() => {
     setCardAllContents(cardAllContentsFunction())
-  }, [scrolling, colorActive])
+  }, [scrolling , colorActive])
+
 
 
   const cardAllContentsFunction = () => {
     if (colorActive === "deepPurple") {
       return (
         <>
-          <div className={`${scrolling >= 700 ? "card-1-animation" : null} card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden`}>
+          <div className={`${activateCard1Animation} card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden`}>
             <h1 className="purple-text text-transparent text-4xl font-bold text-center">Meet <br /> Dynamic Island</h1>
             <div>
               <img className=" mx-auto h-[450px]" src={card1DeepPurpleImg} />
             </div>
           </div>
-          <div className={`card-2 ${scrolling >= 500 ? "card-2-animation" : null} bg-black rounded-[25px] flex items-end justify-center relative overflow-hidden`}>
+          <div className={`card-2 ${activateCard2Animation} bg-black rounded-[25px] flex items-end justify-center relative overflow-hidden`}>
             <img className=" absolute bottom-0 left-0" src={card2DeepPurpleImg} />
             <div className=" z-10 h-[90px]">
               <h3 className=" text-2xl font-bold">
@@ -78,7 +120,7 @@ const Cards = () => {
               </h3>
             </div>
           </div>
-          <div className={`card-3 ${scrolling >= 800 ? "card-3-animation" : null} bg-black rounded-[25px] pt-10 ps-10 overflow-hidden`}>
+          <div className={`card-3 ${activateCard3Animation} bg-black rounded-[25px] pt-10 ps-10 overflow-hidden`}>
             <h3 className=" purple-text text-4xl font-semibold text-transparent">
               The <br />
               Mastermind <br />
@@ -86,14 +128,14 @@ const Cards = () => {
             </h3>
             <img className=" mt-8" src={card3DeepPurpleImg} />
           </div>
-          <div className={`card-4 ${scrolling >= 1300 ? "card-4-deep-purple-animation" : null} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
+          <div className={`card-4 ${activateCard4DeepPurpleAnimation} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
             <h3 className=" purple-text text-2xl font-bold text-transparent tracking-wide">A battery that's</h3>
             <div className="">
               <h1 content="all&nbsp;in," className=" text-6xl font-extrabold text-slate-900 mb-1 h-[70px] relative">all&nbsp;in,</h1>
               <h1 content="&nbsp;&nbsp;all&nbsp;day." className=" text-6xl font-extrabold text-slate-900 h-[70px] relative">&nbsp;&nbsp;all&nbsp;day.</h1>
             </div>
           </div>
-          <div className={`card-7 ${scrolling >= 1600 ? "card-7-animation" : null} rounded-[25px] bg-black flex flex-col justify-between item-center overflow-hidden`}>
+          <div className={`card-7 ${activateCard7Animation} rounded-[25px] bg-black flex flex-col justify-between item-center overflow-hidden`}>
             <h3 className="purple-text mt-12 text-center text-4xl font-bold text-transparent">
               Always-On display. <br />
               A subtle way to stay <br />
@@ -103,7 +145,7 @@ const Cards = () => {
               <img className=" mx-auto" src={card7DeepPurpleImg} />
             </div>
           </div>
-          <div className={` card-8 ${scrolling >= 2300 ? "card-8-animation" : null} rounded-[25px] bg-black pt-10 flex flex-col justify-between items-center overflow-hidden`}>
+          <div className={` card-8 ${activateCard8Animation} rounded-[25px] bg-black pt-10 flex flex-col justify-between items-center overflow-hidden`}>
             <div className=" flex flex-col items-center gap-2">
               <h5 className=" text-white text-2xl font-semibold">Ceramic Shield</h5>
               <h3 className="purple-text text-transparent text-5xl font-semibold">
@@ -129,7 +171,7 @@ const Cards = () => {
               <h3 className="purple-text text-transparent text-5xl font-bold text-center">Crash Detaction</h3>
             </div>
           </div>
-          <div className={` card-13 ${scrolling >= 3200 ? "card-13-animation" : null} rounded-[25px] bg-black flex overflow-hidden gap-10`}>
+          <div className={` card-13 ${activateCard13Animation} rounded-[25px] bg-black flex overflow-hidden gap-10`}>
             <div className=" w-[52%] flex flex-col items-end justify-end">
               <div className=" flex flex-col items-center gap-1">
                 <h1 className=" purple-text text-transparent text-5xl font-bold">6.7”</h1>
@@ -150,13 +192,13 @@ const Cards = () => {
     } else if (colorActive === "gold") {
       return (
         <>
-          <div className={`${scrolling >= 700 ? "card-1-animation" : null} card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden`}>
+          <div className={`${activateCard1Animation} card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden`}>
             <h1 className="gold-text text-transparent text-4xl font-bold text-center">Meet <br /> Dynamic Island</h1>
             <div>
               <img className=" mx-auto h-[450px]" src={card1GoldImg} />
             </div>
           </div>
-          <div className={`card-2 ${scrolling >= 500 ? "card-2-animation" : null} bg-black rounded-[25px] flex items-end justify-center relative overflow-hidden`}>
+          <div className={`card-2 ${activateCard2Animation} bg-black rounded-[25px] flex items-end justify-center relative overflow-hidden`}>
             <img className=" absolute bottom-0 left-0" src={card2GoldImg} />
             <div className=" z-10 h-[90px]">
               <h3 className=" text-2xl font-bold">
@@ -165,7 +207,7 @@ const Cards = () => {
               </h3>
             </div>
           </div>
-          <div className={`card-3 ${scrolling >= 800 ? "card-3-animation" : null} bg-black rounded-[25px] pt-10 ps-10 overflow-hidden`}>
+          <div className={`card-3 ${activateCard3Animation} bg-black rounded-[25px] pt-10 ps-10 overflow-hidden`}>
             <h3 className=" gold-text text-4xl font-semibold text-transparent">
               The <br />
               Mastermind <br />
@@ -173,14 +215,14 @@ const Cards = () => {
             </h3>
             <img className=" mt-8" src={card3GoldImg} />
           </div>
-          <div className={`card-4 ${scrolling >= 1300 ? "card-4-gold-animation" : null} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
+          <div className={`card-4 ${activateCard4GoldAnimation} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
             <h3 className=" gold-text text-2xl font-bold text-transparent tracking-wide">A battery that's</h3>
             <div className="">
               <h1 content="all&nbsp;in," className=" text-6xl font-extrabold text-slate-900 mb-1 h-[70px] relative">all&nbsp;in,</h1>
               <h1 content="&nbsp;&nbsp;all&nbsp;day." className=" text-6xl font-extrabold text-slate-900 h-[70px] relative">&nbsp;&nbsp;all&nbsp;day.</h1>
             </div>
           </div>
-          <div className={`card-7 ${scrolling >= 1600 ? "card-7-animation" : null} rounded-[25px] bg-black flex flex-col justify-between item-center overflow-hidden`}>
+          <div className={`card-7 ${activateCard7Animation} rounded-[25px] bg-black flex flex-col justify-between item-center overflow-hidden`}>
             <h3 className="gold-text mt-12 text-center text-4xl font-bold text-transparent">
               Always-On display. <br />
               A subtle way to stay <br />
@@ -190,7 +232,7 @@ const Cards = () => {
               <img className=" mx-auto" src={card7GoldImg} />
             </div>
           </div>
-          <div className={` card-8 ${scrolling >= 2300 ? "card-8-animation" : null} rounded-[25px] bg-black pt-10 flex flex-col justify-between items-center overflow-hidden`}>
+          <div className={` card-8 ${activateCard8Animation} rounded-[25px] bg-black pt-10 flex flex-col justify-between items-center overflow-hidden`}>
             <div className=" flex flex-col items-center gap-2">
               <h5 className=" text-white text-2xl font-semibold">Ceramic Shield</h5>
               <h3 className="gold-text text-transparent text-5xl font-semibold">
@@ -216,7 +258,7 @@ const Cards = () => {
               <h3 className="gold-text text-transparent text-5xl font-bold text-center">Crash Detaction</h3>
             </div>
           </div>
-          <div className={` card-13 ${scrolling >= 3200 ? "card-13-animation" : null} rounded-[25px] bg-black flex overflow-hidden gap-10`}>
+          <div className={` card-13 ${activateCard13Animation} rounded-[25px] bg-black flex overflow-hidden gap-10`}>
             <div className=" w-[52%] flex flex-col items-end justify-end">
               <div className=" flex flex-col items-center gap-1">
                 <h1 className=" gold-text text-transparent text-5xl font-bold">6.7”</h1>
@@ -237,13 +279,13 @@ const Cards = () => {
     } else if (colorActive === "silver") {
       return (
         <>
-          <div className={`${scrolling >= 700 ? "card-1-animation" : null} card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden`}>
+          <div className={`${activateCard1Animation} card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden`}>
             <h1 className="silver-text text-transparent text-4xl font-bold text-center">Meet <br /> Dynamic Island</h1>
             <div>
               <img className=" mx-auto h-[450px]" src={card1SilverImg} />
             </div>
           </div>
-          <div className={`card-2 ${scrolling >= 500 ? "card-2-animation" : null} bg-black rounded-[25px] flex items-end justify-center relative overflow-hidden`}>
+          <div className={`card-2 ${activateCard2Animation} bg-black rounded-[25px] flex items-end justify-center relative overflow-hidden`}>
             <img className=" absolute bottom-0 left-0" src={card2SilverImg} />
             <div className=" z-10 h-[90px]">
               <h3 className=" text-2xl font-bold">
@@ -252,7 +294,7 @@ const Cards = () => {
               </h3>
             </div>
           </div>
-          <div className={`card-3 ${scrolling >= 800 ? "card-3-animation" : null} bg-black rounded-[25px] pt-10 ps-10 overflow-hidden`}>
+          <div className={`card-3 ${activateCard3Animation} bg-black rounded-[25px] pt-10 ps-10 overflow-hidden`}>
             <h3 className=" silver-text text-4xl font-semibold text-transparent">
               The <br />
               Mastermind <br />
@@ -260,14 +302,14 @@ const Cards = () => {
             </h3>
             <img className=" mt-8" src={card3SilverImg} />
           </div>
-          <div className={`card-4 ${scrolling >= 1300 ? "card-4-silver-animation" : null} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
+          <div className={`card-4 ${activateCard4SilverAnimation} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
             <h3 className=" silver-text text-2xl font-bold text-transparent tracking-wide">A battery that's</h3>
             <div className="">
               <h1 content="all&nbsp;in," className=" text-6xl font-extrabold text-slate-900 mb-1 h-[70px] relative">all&nbsp;in,</h1>
               <h1 content="&nbsp;&nbsp;all&nbsp;day." className=" text-6xl font-extrabold text-slate-900 h-[70px] relative">&nbsp;&nbsp;all&nbsp;day.</h1>
             </div>
           </div>
-          <div className={`card-7 ${scrolling >= 1600 ? "card-7-animation" : null} rounded-[25px] bg-black flex flex-col justify-between item-center overflow-hidden`}>
+          <div className={`card-7 ${activateCard7Animation} rounded-[25px] bg-black flex flex-col justify-between item-center overflow-hidden`}>
             <h3 className="silver-text mt-12 text-center text-4xl font-bold text-transparent">
               Always-On display. <br />
               A subtle way to stay <br />
@@ -277,7 +319,7 @@ const Cards = () => {
               <img className=" mx-auto" src={card7SilverImg} />
             </div>
           </div>
-          <div className={` card-8 ${scrolling >= 2300 ? "card-8-animation" : null} rounded-[25px] bg-black pt-10 flex flex-col justify-between items-center overflow-hidden`}>
+          <div className={` card-8 ${activateCard8Animation} rounded-[25px] bg-black pt-10 flex flex-col justify-between items-center overflow-hidden`}>
             <div className=" flex flex-col items-center gap-2">
               <h5 className=" text-white text-2xl font-semibold">Ceramic Shield</h5>
               <h3 className="silver-text text-transparent text-5xl font-semibold">
@@ -303,7 +345,7 @@ const Cards = () => {
               <h3 className="silver-text text-transparent text-5xl font-bold text-center">Crash Detaction</h3>
             </div>
           </div>
-          <div className={` card-13 ${scrolling >= 3200 ? "card-13-animation" : null} rounded-[25px] bg-black flex overflow-hidden gap-10`}>
+          <div className={` card-13 ${activateCard13Animation} rounded-[25px] bg-black flex overflow-hidden gap-10`}>
             <div className=" w-[52%] flex flex-col items-end justify-end">
               <div className=" flex flex-col items-center gap-1">
                 <h1 className=" silver-text text-transparent text-5xl font-bold">6.7”</h1>
@@ -324,13 +366,13 @@ const Cards = () => {
     } else if (colorActive === `black`) {
       return (
         <>
-          <div className={`${scrolling >= 700 ? "card-1-animation" : null} card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden`}>
+          <div className={`${activateCard1Animation} card-1  bg-black rounded-[25px] pt-10 flex flex-col justify-between items-center overflow-hidden`}>
             <h1 className="black-text text-transparent text-4xl font-bold text-center">Meet <br /> Dynamic Island</h1>
             <div>
               <img className=" mx-auto h-[450px]" src={card1BlackImg} />
             </div>
           </div>
-          <div className={`card-2 ${scrolling >= 500 ? "card-2-animation" : null} bg-black rounded-[25px] flex items-end justify-center relative overflow-hidden`}>
+          <div className={`card-2 ${activateCard2Animation} bg-black rounded-[25px] flex items-end justify-center relative overflow-hidden`}>
             <img className=" absolute bottom-0 left-0" src={card2BlackImg} />
             <div className=" z-10 h-[90px]">
               <h3 className=" text-2xl font-bold">
@@ -339,7 +381,7 @@ const Cards = () => {
               </h3>
             </div>
           </div>
-          <div className={`card-3 ${scrolling >= 800 ? "card-3-animation" : null} bg-black rounded-[25px] pt-10 ps-10 overflow-hidden`}>
+          <div className={`card-3 ${activateCard3Animation} bg-black rounded-[25px] pt-10 ps-10 overflow-hidden`}>
             <h3 className=" black-text text-4xl font-semibold text-transparent">
               The <br />
               Mastermind <br />
@@ -347,14 +389,14 @@ const Cards = () => {
             </h3>
             <img className=" mt-8" src={card3BlackImg} />
           </div>
-          <div className={`card-4 ${scrolling >= 1300 ? "card-4-black-animation" : null} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
+          <div className={`card-4 ${activateCard4BlackAnimation} bg-black rounded-[25px] pt-14 ps-12 flex flex-col gap-5`}>
             <h3 className=" black-text text-2xl font-bold text-transparent tracking-wide">A battery that's</h3>
             <div className="">
               <h1 content="all&nbsp;in," className=" text-6xl font-extrabold text-slate-900 mb-1 h-[70px] relative">all&nbsp;in,</h1>
               <h1 content="&nbsp;&nbsp;all&nbsp;day." className=" text-6xl font-extrabold text-slate-900 h-[70px] relative">&nbsp;&nbsp;all&nbsp;day.</h1>
             </div>
           </div>
-          <div className={`card-7 ${scrolling >= 1600 ? "card-7-animation" : null} rounded-[25px] bg-black flex flex-col justify-between item-center overflow-hidden`}>
+          <div className={`card-7 ${activateCard7Animation} rounded-[25px] bg-black flex flex-col justify-between item-center overflow-hidden`}>
             <h3 className="black-text mt-12 text-center text-4xl font-bold text-transparent">
               Always-On display. <br />
               A subtle way to stay <br />
@@ -364,7 +406,7 @@ const Cards = () => {
               <img className=" mx-auto" src={card7BlackImg} />
             </div>
           </div>
-          <div className={` card-8 ${scrolling >= 2300 ? "card-8-animation" : null} rounded-[25px] bg-black pt-10 flex flex-col justify-between items-center overflow-hidden`}>
+          <div className={` card-8 ${activateCard8Animation} rounded-[25px] bg-black pt-10 flex flex-col justify-between items-center overflow-hidden`}>
             <div className=" flex flex-col items-center gap-2">
               <h5 className=" text-white text-2xl font-semibold">Ceramic Shield</h5>
               <h3 className="black-text text-transparent text-5xl font-semibold">
@@ -390,7 +432,7 @@ const Cards = () => {
               <h3 className="black-text text-transparent text-5xl font-bold text-center">Crash Detaction</h3>
             </div>
           </div>
-          <div className={` card-13 ${scrolling >= 3200 ? "card-13-animation" : null} rounded-[25px] bg-black flex overflow-hidden gap-10`}>
+          <div className={` card-13 ${activateCard13Animation} rounded-[25px] bg-black flex overflow-hidden gap-10`}>
             <div className=" w-[52%] flex flex-col items-end justify-end">
               <div className=" flex flex-col items-center gap-1">
                 <h1 className=" black-text text-transparent text-5xl font-bold">6.7”</h1>
